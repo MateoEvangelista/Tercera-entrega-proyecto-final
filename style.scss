@@ -1,0 +1,468 @@
+$color: (                               /*Pad de colores usados*/
+    'primary': hsl(0, 0%, 50%),
+    'head': white,
+    'secondary': #f1e5db,
+    'frase': #383434,
+    'button': red,
+    'smoke': whitesmoke,
+    'head2': #EEEBDD,
+    'letters': black
+);
+
+@mixin headfooter-layout ($area){                   /*Mixin para simplificar el codigo*/
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    color: map-get($color, 'letters');
+    height: 100%;
+    grid-area: $area;
+}
+
+.body-layout{                                       /*IDEM Mixin*/
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: map-get($color, 'primary');
+    display: grid;
+    width: 100%;
+}
+
+
+header{                                             /*HEADER*/
+    @include headfooter-layout (header);
+    background-color: map-get($color, 'head');
+
+    h2{
+        margin-left: 2%;
+
+    }
+
+    input{                                                          /*Buscador*/
+        background-color: map-get($color, 'secondary');
+        border-radius: 5px;
+        height: 45%;
+        width: 30%;
+        margin: 1% 0% 0% 10%; 
+    }
+
+    ul{                                                             /*Nav*/
+        margin: 1.3%;
+        text-align: right;
+        width: 40%;
+
+        li{
+            display: inline;
+            margin: 0 1%;
+        }
+    }
+}
+
+footer{                                                    /*FOOTER*/
+    @include headfooter-layout (footer);
+    background-color: map-get($color, 'head');
+    text-align: center;
+
+    p{
+        margin: {
+            top: 1.5%;
+            left: 2%;
+        }
+            
+    }
+    div{
+        margin-left: 40%;
+        width: 20%;
+
+        img{
+            margin: 4% 0% 0% 10%;
+            height: auto;
+            width: auto;
+            max-width: 80px;
+            max-height: 35px;
+        }
+    }
+}
+
+
+
+/*---------------------------------- Index ----------------------------------*/
+
+
+
+.body-index{
+    @extend .body-layout;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+
+    main{
+        grid-area: main;
+        color: black;
+        height: auto;
+        background-color: grey;
+        padding-top: 1%
+    }
+}
+   
+.div-frase{                                         /*Frase principal*/
+    color: map-get($color, 'secondary');
+    background-color: map-get($color, 'frase');
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    margin: 4% 20% 5% 20%;
+    border-radius: 15px;
+
+    h1{
+        font-family: Courier;
+        text-align: center;
+        padding: 2%;
+    }
+}
+.about-us{                                          /*Texto explicativo debajo de la frase*/
+    display: flex;
+    text-align: center;
+    font-family: Courier;
+}
+.slider{                                             /*Slider*/
+    width: 1250px;
+    height: 600px;
+    overflow: hidden;
+    text-align: center;
+    margin-top: 50px;
+
+    ul{
+        display: flex;
+        animation: cambio 15s infinite alternate;
+        width: 400%;
+        position: relative;
+
+        li{
+            width: 100%;
+            list-style: none;
+
+            img{
+                height: auto;
+                width: auto;
+                max-height: 400px;
+                max-width: 1250px;
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
+@keyframes cambio{
+    0%{margin-left: 0%;}
+    20%{margin-left: 0%;}
+
+    25%{margin-left: -100%;}
+    45%{margin-left: -100%;}
+
+    50%{margin-left: -200%;}
+    70%{margin-left: -200%;}
+
+    75%{margin-left: -300%;}
+    95%{margin-left: -300%;}
+}
+
+.container-row{                                         /*Botones acceso directo*/
+    margin: {
+        top: 5%;
+        right: 5%;
+    }
+    text-align: center;
+    button{
+        background-color: map-get($color, 'secondary');
+        width: 20%; 
+        margin-left: 4%; 
+        margin-bottom: 10%;
+        border-radius: 15px;
+
+        div{
+            margin: 8%;
+        }
+    }
+    
+}
+
+
+
+/*---------------------------------- Comprar ----------------------------------*/
+
+
+
+.body-comprar{
+    @extend .body-layout;
+    grid-template-areas: 
+    "header header"
+    "aside main"
+    "footer footer";
+
+    main{
+        div{                                                            /*Productos*/
+            grid-area: main;
+            display: flex;
+            flex-direction: column;
+            margin-left: 10%;
+
+            div{
+                display: grid;
+                grid-template-areas: 
+                "img producto producto" 
+                "img precio carrito";
+                background-color: map-get($color, 'secondary');
+                margin: 1%;
+                width: 800px;
+                border-radius: 10px;
+
+                h3{
+                    grid-area: producto;
+                    display: flex;
+                    margin-right: 15%;
+                }
+
+                p{
+                    grid-area: precio;
+                }
+
+                button{
+                    grid-area: carrito;
+                    display: flex;
+                    margin-right: 15%;
+                    background-color: map-get($color, 'button');
+                    width: 50%;
+                    height: 40px;
+                    border-radius: 15px;
+
+                    p{
+                        grid-area: carrito;
+                        margin-left: 10%;
+                    }
+                }
+            }
+
+            img{
+                grid-area: img;
+                display: flex;
+                height: auto;
+                width: auto;
+                max-width: 50%;
+                max-height: 80%;
+                padding: 1%;
+            }
+        }
+    }
+}
+aside{                                                              /*Aside con las categorias*/
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    background-color: map-get($color, 'smoke');
+    width: 100%;
+    height: 40%;
+    padding-left: 2%;
+
+    p{
+        border: black;
+        border-width: 10px;
+    }
+}
+   
+
+
+/*---------------------------------- Contactanos ----------------------------------*/
+
+
+
+.body-contactanos{
+    @extend .body-layout;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+
+    main{                                                   /*Form datos contactanos*/
+        grid-area: main;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 500px;
+        
+        h3{
+            font-size: 150%;
+            margin-bottom: 5;
+        }
+
+        input{
+            height: 5%;
+            width: 40%;
+            margin: 1.5%;
+
+        }
+
+    }
+}
+
+
+
+/*---------------------------------- Carrito ----------------------------------*/
+
+
+
+.body-carrito{
+    @extend .body-layout;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+
+    main{
+        grid-area: main;
+        display: flex;
+        height: 500px;
+
+            div{                                                /*Carrito(tus productos y guardados)*/
+                background-color: map-get($color, 'head2');
+                height: 50%;
+                width: 50%;
+                margin: 10% 10% 25% 12%;
+                border-radius: 15px;
+                text-align: center;
+    
+                li{
+                    list-style: none;
+                    text-align: left;
+                }
+                
+            }
+    }
+}
+
+
+
+/*---------------------------------- Cuenta ----------------------------------*/
+
+
+
+.body-cuenta{
+    @extend .body-layout;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    form{                                                           /*Form datos cuenta*/
+        grid-area: main;
+        display: flex;
+        flex-direction: column;
+        align-items: center;                
+        height: 468px;
+
+        input{
+            height: 5%;
+            width: 40%;
+            margin: 1.5%;
+        }
+    }
+
+    h2{
+        text-align: center;
+    }
+}
+
+
+
+/*---------------------------------- Mobile ----------------------------------*/
+
+
+
+@media only screen and (max-width: 640px){
+
+
+                                            /*----- Header -----*/
+
+
+    header input{
+        display: none;
+    }
+    header ul{
+        font-size: 90%;
+        text-align: center;
+        margin: 4% 0% 0% 25%;
+        width: 60%;
+    }
+
+
+                                            /*----- Footer -----*/
+
+
+    footer{
+        p{
+            display: none;
+        }
+        
+        div{
+            margin-left: 20%;
+            width: 50%;
+            img{
+                margin-bottom: 2%;
+            }
+        }
+    }
+
+
+                                            /*----- Index -----*/
+    
+
+    .div-frase{
+        margin: 4% 2% 4% 25%;
+        width: 45%;
+        justify-content: center;
+        height: 20%;
+        h1{
+            font-size: 120%;
+        }
+    }
+
+    .about-us{
+        font-size: 90%;
+        text-align: left;
+        width: 100%;
+    }
+
+    .slider{
+        display: none;
+    }
+
+    .container-row{
+        text-align: left;
+        margin: 10% 0% 10% 15%;
+        button{
+            width: 20%;
+            font-size: 80%;
+        }
+    }
+
+
+                                            /*----- Comprar -----*/
+
+
+    .body-comprar{
+
+        main{
+
+            div{
+
+                div{
+                    width: 300px;
+
+                    button{
+                        display: none;
+                    }
+                }
+
+                img{
+                    margin-top: 12%;
+                }
+            }
+        }
+    }
+}

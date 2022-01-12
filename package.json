@@ -1,0 +1,19 @@
+{
+  "name": "coderhouse-git-v7",
+  "version": "1.0.0",
+  "description": "proyecto coderhouse xslice ecommerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MateoEvangelista/Tercera-entrega-proyecto-final.git"
+  },
+  "author": "Mateo Evangelista",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MateoEvangelista/Tercera-entrega-proyecto-final/issues"
+  },
+  "homepage": "https://github.com/MateoEvangelista/Tercera-entrega-proyecto-final#readme"
+}
